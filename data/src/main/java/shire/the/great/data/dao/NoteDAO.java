@@ -23,7 +23,6 @@ public class NoteDAO extends AbstractBaseDAO<Note, RecipeDbHelper> {
     @Override
     public void initializeDatabase(Context context) {
         mDb = new RecipeDbHelper(context);
-
     }
 
     @Override

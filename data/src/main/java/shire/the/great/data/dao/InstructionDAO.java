@@ -23,7 +23,6 @@ public class InstructionDAO extends AbstractBaseDAO<Instruction, RecipeDbHelper>
     @Override
     public void initializeDatabase(Context context) {
         mDb = new RecipeDbHelper(context);
-
     }
 
     @Override

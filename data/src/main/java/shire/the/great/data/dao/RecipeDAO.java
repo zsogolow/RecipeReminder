@@ -222,8 +222,6 @@ public class RecipeDAO extends AbstractBaseDAO<Recipe, RecipeDbHelper> {
 
     @Override
     public Recipe get(int id) {
-
-
         return null;
     }
 

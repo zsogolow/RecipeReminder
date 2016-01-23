@@ -9,11 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
+ * Subclass of the SQLiteOpenHelper which is the access
+ * point in the SQLite framework.
+ *
  * Created by ZachS on 1/21/2016.
  */
 public class RecipeDbHelper extends SQLiteOpenHelper {
-
-    // public static final DateFormat df = new SimpleDateFormat("dd/MM/YYYY - hh:mm:ss", Locale.US);
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
