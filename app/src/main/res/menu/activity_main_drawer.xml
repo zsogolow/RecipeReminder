@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_recipes_all"
+            android:icon="@drawable/ic_menu_recipes_all"
+            android:title="@string/nav_recipes" />
+    </group>
+
+
+    <item android:title="@string/nav_categories_header">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_default_breakfast"
+                    android:icon="@drawable/ic_menu_breakfast"
+                    android:title="@string/category_breakfast" />
+                <item
+                    android:id="@+id/nav_default_lunch"
+                    android:icon="@drawable/ic_menu_lunch"
+                    android:title="@string/category_lunch" />
+                <item
+                    android:id="@+id/nav_default_dinner"
+                    android:icon="@drawable/ic_menu_dinner"
+                    android:title="@string/category_dinner" />
+                <item
+                    android:id="@+id/nav_add_category"
+                    android:checkable="false"
+                    android:icon="@drawable/ic_menu_add_category"
+                    android:title="@string/nav_add_category" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_help_header">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="@string/nav_about" />
+            <item
+                android:id="@+id/nav_participate"
+                android:icon="@drawable/ic_menu_participate"
+                android:title="@string/nav_participate" />
+        </menu>
+    </item>
+
+</menu>
