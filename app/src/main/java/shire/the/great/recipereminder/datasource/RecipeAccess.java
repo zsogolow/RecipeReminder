@@ -32,6 +32,11 @@ public class RecipeAccess {
         return recipeMap;
     }
 
+    public static List<Recipe> getRecipes(Context context) {
+        RecipeDAO recipeDAO = new FactoryDAO(context).getRecipeDAO();
+        return recipeDAO.get();
+    }
+
     public static List<RecipeCategory> getCategories(Context context) {
         RecipeCategoryDAO recipeCategoryDAO = new FactoryDAO(context).getRecipeCategoryDAO();
         return recipeCategoryDAO.get();

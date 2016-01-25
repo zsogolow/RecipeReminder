@@ -55,17 +55,23 @@ public class MainActivity extends AppCompatActivity
         // pulled from the database
         initializeCategories(mRecipeCategories, navigationView);
 
-        // Add the All Recipes fragment first, this is the base fragment
-        // Pressing the back button from a different fragment will return
-        // the user to this fragment before exiting
+        navigationView.getMenu().getItem(0).setChecked(true);
+    }
+
+    private void initializeBaseFragment() {
+        // remove previously add back stack entries if any exist,
+        // we only want one backwards navigation on back pressed from
+        // the current fragment to the base all recipes fragment
+        for (int i = 0; i < getFragmentManager().getBackStackEntryCount(); i++) {
+            getFragmentManager().popBackStack();
+        }
+
         RecipesFragment recipesFragment = RecipesFragment
                 .newInstance(AppContext.ALL_CATEGORIES.getName(), AppContext.ALL_CATEGORIES);
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, recipesFragment)
                 .commit();
-
-        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     private void initializeCategories(List<RecipeCategory> categories, NavigationView navigationView) {
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         for (RecipeCategory category : mRecipeCategories) {
             mCategoryGroup.add(R.id.nav_category_group, mRecipeCategories.indexOf(category), Menu.NONE, category.getName())
                     .setCheckable(true)
-                    .setIcon(R.drawable.ic_menu_food3);
+                    .setIcon(R.drawable.ic_menu_food1);
         }
 
         mCategoryGroup.setGroupCheckable(R.id.nav_category_group, true, true);
@@ -113,6 +119,11 @@ public class MainActivity extends AppCompatActivity
 
         AppContext appContext = AppContext.instance(this);
 
+        // Add the All Recipes fragment first, this is the base fragment
+        // Pressing the back button from a different fragment will return
+        // the user to this fragment before exiting
+        initializeBaseFragment();
+
         RecipesFragment topFragment = RecipesFragment
                 .newInstance(appContext.getSelectedCategory().getName(), appContext.getSelectedCategory());
         getFragmentManager()
@@ -124,17 +135,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        // Get a reference to the AppContext
+        AppContext appContext = AppContext.instance(this);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+        } else if (!appContext.getSelectedCategory().equals(AppContext.ALL_CATEGORIES)
+                && getFragmentManager().getBackStackEntryCount() > 0) {
             // Pop the fragment added to the back stack, the new fragment
             // will be the All Recipes fragment
             getFragmentManager().popBackStackImmediate();
             getFragmentManager().beginTransaction().commit();
-
-            // Get a reference to the AppContext
-            AppContext appContext = AppContext.instance(this);
 
             // set the all recipes menu item to checked, and the last
             // selected category to unchecked and set the

@@ -20,16 +20,13 @@ public class AppContext {
     public static final RecipeCategory ALL_CATEGORIES = new RecipeCategory(-1, "All Recipes");
 
     private static AppContext mInstance;
-    private static boolean mLoaded;
 
     private Context mAndroidContext;
-    private Map<RecipeCategory, Recipe> mCategoryRecipeMap;
 
     private RecipeCategory mSelectedCategory = null;
 
     private AppContext(Context context) {
         mAndroidContext = context;
-        new LoadRecipesTask().execute();
         mSelectedCategory = ALL_CATEGORIES;
     }
 
@@ -41,14 +38,6 @@ public class AppContext {
         return mInstance;
     }
 
-    public boolean isLoaded() {
-        return mLoaded;
-    }
-
-    public Map<RecipeCategory, Recipe> getRecipeMap() {
-        return mCategoryRecipeMap;
-    }
-
     public RecipeCategory getSelectedCategory() {
         return mSelectedCategory;
     }
@@ -57,19 +46,4 @@ public class AppContext {
         mSelectedCategory = category;
     }
 
-    private class LoadRecipesTask extends AsyncTask<String, Integer, Map<RecipeCategory, Recipe>> {
-        protected Map<RecipeCategory, Recipe> doInBackground(String... urls) {
-            mLoaded = false;
-            return RecipeAccess.getRecipesByCategory(mAndroidContext);
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-            //setProgressPercent(progress[0]);
-        }
-
-        protected void onPostExecute(Map<RecipeCategory, Recipe> result) {
-            mCategoryRecipeMap = result;
-            mLoaded = true;
-        }
-    }
 }
