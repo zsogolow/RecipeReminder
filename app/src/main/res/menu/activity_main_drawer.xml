@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
@@ -8,28 +9,14 @@
             android:title="@string/nav_recipes" />
     </group>
 
-
-    <item android:title="@string/nav_categories_header">
+    <item android:title="@string/nav_categories_header"
+        app:actionLayout="@layout/edit_category_action"
+        android:id="@+id/nav_category_parent">
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:id="@+id/nav_category_group"
+                android:menuCategory="container"
+                android:checkableBehavior="single">
 
-                <item
-                    android:id="@+id/nav_default_breakfast"
-                    android:icon="@drawable/ic_menu_breakfast"
-                    android:title="@string/category_breakfast" />
-                <item
-                    android:id="@+id/nav_default_lunch"
-                    android:icon="@drawable/ic_menu_lunch"
-                    android:title="@string/category_lunch" />
-                <item
-                    android:id="@+id/nav_default_dinner"
-                    android:icon="@drawable/ic_menu_dinner"
-                    android:title="@string/category_dinner" />
-                <item
-                    android:id="@+id/nav_add_category"
-                    android:checkable="false"
-                    android:icon="@drawable/ic_menu_add_category"
-                    android:title="@string/nav_add_category" />
             </group>
         </menu>
     </item>

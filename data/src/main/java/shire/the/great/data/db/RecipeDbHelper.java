@@ -1,5 +1,6 @@
 package shire.the.great.data.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -123,6 +124,9 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_NOTE_TABLE);
         db.execSQL(CREATE_RECIPE_TIME_TABLE);
 
+        ContentValues cv = new ContentValues();
+        cv.put(RECIPE_CATEGORY, "General");
+        db.insert(RECIPE_CATEGORY_TABLE, null, cv);
     }
 
     @Override

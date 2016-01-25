@@ -2,8 +2,10 @@ package shire.the.great.data.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import shire.the.great.data.db.RecipeDbHelper;
@@ -27,7 +29,24 @@ public class RecipeCategoryDAO extends AbstractBaseDAO<RecipeCategory, RecipeDbH
 
     @Override
     public List<RecipeCategory> get() {
-        return null;
+        List<RecipeCategory> categories = new ArrayList<>();
+        SQLiteDatabase database = mDb.getReadableDatabase();
+        Cursor categoryCursor = database.rawQuery("SELECT * FROM " +
+                RecipeDbHelper.RECIPE_CATEGORY_TABLE, null);
+
+        if (categoryCursor.moveToFirst()) {
+            do {
+                int categoryId = categoryCursor
+                        .getInt(categoryCursor.getColumnIndex(RecipeDbHelper.RECIPE_CATEGORY_ID));
+                String categoryName = categoryCursor
+                        .getString(categoryCursor.getColumnIndex(RecipeDbHelper.RECIPE_CATEGORY));
+                RecipeCategory category = new RecipeCategory(categoryId, categoryName);
+                categories.add(category);
+            } while (categoryCursor.moveToNext());
+        }
+        categoryCursor.close();
+
+        return categories;
     }
 
     @Override
