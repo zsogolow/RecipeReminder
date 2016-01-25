@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity
         for (RecipeCategory category : mRecipeCategories) {
             mCategoryGroup.add(R.id.nav_category_group, mRecipeCategories.indexOf(category), Menu.NONE, category.getName())
                     .setCheckable(true)
-                    .setIcon(R.drawable.ic_menu_lunch);
+                    .setIcon(R.drawable.ic_menu_food3);
         }
 
         mCategoryGroup.setGroupCheckable(R.id.nav_category_group, true, true);
         mCategoryGroup.add(R.id.nav_category_group, mRecipeCategories.size(), Menu.NONE, R.string.nav_add_category)
                 .setCheckable(false)
-                .setIcon(R.drawable.ic_menu_add_category);
+                .setIcon(R.drawable.ic_menu_add);
     }
 
     private void initializeFloatingAddAction() {

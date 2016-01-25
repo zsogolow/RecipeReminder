@@ -26,6 +26,8 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_participate">Pause for the Cause</string>
     <string name="title_activity_view_recipe">View Recipe</string>
+    <string name="nav_header_primary_text">Android Studio</string>
+    <string name="nav_header_secondary_text">android.studio@android.com</string>
 
 </resources>
 
